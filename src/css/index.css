@@ -40,6 +40,11 @@ body {
     background: #ddd;
   }
   
+  .name-inputs {
+    display: flex;
+    margin-right: 20px;
+  }
+
   .game {
     display: flex;
     flex-direction: row;

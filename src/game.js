@@ -1,6 +1,7 @@
 import Board from './board';
 import React from 'react';
-import './index.css';
+import NameInput from './nameInput';
+import './css/index.css';
 
 function calculateWinner(squares) {
     const lines = [
@@ -27,6 +28,8 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            name1 : props.name1,
+            name2 : props.name2,
             history: [
                 {
                     squares: Array(9).fill(null)
@@ -81,17 +84,22 @@ class Game extends React.Component {
 
         let status;
         if (winner) {
-            status = "Winner: " + winner;
-        } 
+            status = "Winner: " + winner + " - " + (this.state.xIsNext ? this.state.name2 : this.state.name1);
+        }
         else if (this.state.stepNumber == 9) {
             status = "Draw - No One Wins";
         }
         else {
-            status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+            status = "Player " 
+            + (this.state.xIsNext ? this.state.name1 : this.state.name2) 
+            + ": " + (this.state.xIsNext ? "X" : "O");
         }
 
         return (
             <div className="game">
+                {/* <div className="name-inputs">
+                    <NameInput />
+                </div> */}
                 <div className="game-board">
                     <Board
                         squares={current.squares}
@@ -103,6 +111,7 @@ class Game extends React.Component {
                     <ol>{moves}</ol>
                 </div>
             </div>
+
         );
     }
 }
