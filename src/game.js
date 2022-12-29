@@ -36,13 +36,7 @@ function calculateFirstPlayer() {
     };
 }
 
-function newGame() {
-    return (
-        <NameInput />
-    );
-}
-
-class Game extends React.Component {
+export default class Game extends React.Component {
 
     constructor(props) {
         super(props);
@@ -55,7 +49,8 @@ class Game extends React.Component {
                 }
             ],
             stepNumber: 0,
-            xIsNext: calculateFirstPlayer()
+            xIsNext: calculateFirstPlayer(),
+            newGame: props.newGame
         };
     }
 
@@ -85,8 +80,17 @@ class Game extends React.Component {
         });
     }
 
+    restartGame() {
+        this.setState({
+            newGame : true
+        });
+    }
+
     render() {
-        const reset = false
+
+        const isSumbitted = this.state.isSumbitted;
+        let content;
+
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
@@ -104,39 +108,50 @@ class Game extends React.Component {
                 + ": " + (this.state.xIsNext ? "X" : "O");
         }
 
-        if (winner || status === "Draw - No One Wins") {
-            return (
-                <div className="game">
-                    <div className="game-board">
-                        <Board
-                            squares={current.squares}
-                            onClick={i => this.handleClick(i)}
-                        />
+
+        if (!this.state.newGame) {
+            if (winner || status === "Draw - No One Wins") {
+                content = (
+                    // return (
+                    <div className="game">
+                        <div className="game-board">
+                            <Board
+                                squares={current.squares}
+                                onClick={i => this.handleClick(i)}
+                            />
+                        </div>
+                        <div className="game-info">
+                            <div>{status}</div>
+                            <div><button onClick={() => this.jumpTo(0)}>Reset</button></div>
+                            <div><button onClick={() => this.restartGame()}>New Game</button></div>
+                        </div>
                     </div>
-                    <div className="game-info">
-                        <div>{status}</div>
-                        <div><button onClick={() => this.jumpTo(0)}>Reset</button></div>
-                        <div><button onClick={() => newGame()}>New Game</button></div>
+                );
+            }
+            else {
+                content = (
+                    <div className="game">
+                        <div className="game-board">
+                            <Board
+                                squares={current.squares}
+                                onClick={i => this.handleClick(i)}
+                            />
+                        </div>
+                        <div className="game-info">
+                            <div>{status}</div>
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            }
         }
         else {
-            return (
-                <div className="game">
-                    <div className="game-board">
-                        <Board
-                            squares={current.squares}
-                            onClick={i => this.handleClick(i)}
-                        />
-                    </div>
-                    <div className="game-info">
-                        <div>{status}</div>
-                    </div>
+            content = (
+                <div>
+                    <NameInput />
                 </div>
             );
         }
+        return <div>{content}</div>
     }
 }
-
-export default Game;
+// export default Game;

@@ -28,7 +28,7 @@ export default class NameInput extends React.Component {
         const isSumbitted = this.state.isSumbitted;
         let content;
         if (isSumbitted) {
-            content = <Game name1={this.state.name1} name2={this.state.name2} />;
+            content = <Game name1={this.state.name1} name2={this.state.name2} newGame={false}/>;
         }
         else {
             content = (
@@ -39,7 +39,6 @@ export default class NameInput extends React.Component {
                             <input type="text"
                                 value={this.state.name1}
                                 onChange={this.handleName1Change}
-                            //placeholder="First Player"
                             />
                         </label>
                     </Row>
@@ -49,7 +48,6 @@ export default class NameInput extends React.Component {
                             <input type="text"
                                 value={this.state.name2}
                                 onChange={this.handleName2Change}
-                            //placeholder="Second Player"
                             />
                         </label>
                     </Row>
