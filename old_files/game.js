@@ -36,12 +36,6 @@ function calculateFirstPlayer() {
     };
 }
 
-function newGame() {
-    return (
-        <NameInput />
-    );
-}
-
 class Game extends React.Component {
 
     constructor(props) {
@@ -81,7 +75,7 @@ class Game extends React.Component {
     jumpTo(step) {
         this.setState({
             stepNumber: step,
-            xisNext: calculateFirstPlayer()
+            xIsNext: (step % 2) === 0
         });
     }
 
@@ -90,6 +84,68 @@ class Game extends React.Component {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
+
+        // if (move === 0) {
+        //     this.state.xIsNext = calculateFirstPlayer();
+        //     this.history = [
+        //         {
+        //             squares: Array(9).fill(null)
+        //         }
+        //     ]
+        //     this.stepNumber = 0;
+        //     // return (
+
+        //     //     <li key={move}>
+        //     //         <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        //     //     </li>
+        //     // );
+
+        // }
+
+
+        // const moves = history.map((step, move) => {
+        //     const desc = move ?
+        //         'Go to move #' + move :
+        //         'Reset';
+        //     if (desc == 'Reset' && move != 0) {
+        //         // this.state.xIsNext = calculateFirstPlayer();
+        //         // this.history = [
+        //         //     {
+        //         //         squares: Array(9).fill(null)
+        //         //     }
+        //         // ]
+
+        //         this.setState({
+        //             history: [
+        //                 {
+        //                     // squares: Array(9).fill(null)
+        //                     squares: []
+        //                 }
+        //             ],
+        //             stepNumber: 0,
+        //             xIsNext: calculateFirstPlayer()
+
+        //         });
+        //         reset = true;
+        //         // return (
+        //         //     <li key={move}>
+        //         //         <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        //         //     </li>
+        //         // );
+        //     }
+        //     else {
+        //         return (
+        //             <li key={move}>
+        //                 <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        //             </li>
+        //         );
+        //     }
+        // });
+
+        // if (reset == true) {
+        //     moves = null;
+        //     reset = false;
+        // }
 
         let status;
         if (winner) {
@@ -114,9 +170,9 @@ class Game extends React.Component {
                         />
                     </div>
                     <div className="game-info">
-                        <div>{status}</div>
-                        <div><button onClick={() => this.jumpTo(0)}>Reset</button></div>
-                        <div><button onClick={() => newGame()}>New Game</button></div>
+                        {/* <ol>{moves}</ol> */}
+                            <div>{status}</div>
+                            <div><button onClick={() => this.jumpTo(0)}>Reset</button></div>
                     </div>
                 </div>
             );
@@ -132,6 +188,7 @@ class Game extends React.Component {
                     </div>
                     <div className="game-info">
                         <div>{status}</div>
+                        {/* <ol>{moves}</ol> */}
                     </div>
                 </div>
             );
