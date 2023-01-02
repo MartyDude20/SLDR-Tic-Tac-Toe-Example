@@ -2,7 +2,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Game from './game';
 
-
+//
 export default class NameInput extends React.Component {
     constructor(props) {
         super(props);
