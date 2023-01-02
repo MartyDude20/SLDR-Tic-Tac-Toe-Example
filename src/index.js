@@ -1,9 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './css/index.css';
-import Game from './game';
-import NameInput from './nameInput';
-// ========================================
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<NameInput />);
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
