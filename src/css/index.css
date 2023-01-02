@@ -1,12 +1,18 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background-color: #17213f;
+  color: white;
 }
 
 ol,
 ul {
   padding-left: 30px;
 }
+
+/* .bg-main {
+  background-color: #0c0d10;
+} */
 
 .board-row:after {
   clear: both;

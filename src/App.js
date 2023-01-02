@@ -10,7 +10,7 @@ import NameInput from './nameInput';
 
 const App = () => {
     return (
-      <div>
+      <div className='bg-main'>
         {/* <Navbar /> */}
         <Routes>
           <Route exact path="/" element={<NameInput />} />
