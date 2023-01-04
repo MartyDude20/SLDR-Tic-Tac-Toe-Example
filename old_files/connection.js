@@ -4,7 +4,6 @@
  */
 const { MongoClient } = require('mongodb');
 
-
 async function listDatabases(client){
   databasesList = await client.db().admin().listDatabases();
 
