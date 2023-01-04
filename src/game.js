@@ -1,7 +1,9 @@
 import Board from './board';
-import React from 'react';
 import NameInput from './nameInput';
 import './css/index.css';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import RecordList from './scoreboardList';
 
 function calculateWinner(squares) {
     const lines = [
@@ -82,7 +84,7 @@ export default class Game extends React.Component {
 
     restartGame() {
         this.setState({
-            newGame : true
+            newGame: true
         });
     }
 
@@ -124,6 +126,9 @@ export default class Game extends React.Component {
                             <div>{status}</div>
                             <div><button onClick={() => this.jumpTo(0)}>Reset</button></div>
                             <div><button onClick={() => this.restartGame()}>New Game</button></div>
+                        </div>
+                        <div>
+                            <RecordList />
                         </div>
                     </div>
                 );
